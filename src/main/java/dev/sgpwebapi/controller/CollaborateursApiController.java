@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -70,5 +73,25 @@ public class CollaborateursApiController {
 
 		return jsonStr;
 	}
+	
+	@PutMapping("/{matricule}")
+	public @ResponseBody Collaborateur modifiercollaborateursParMatricule(@PathVariable("matricule") String matricule, @RequestBody Collaborateur collab) {
+		Collaborateur collabModif = this.collabRepo.findByMatricule(matricule).get(0);
+		collabModif.setActif(collab.getActif());
+		collabModif.setAdresse(collab.getAdresse());
+		collabModif.setBan(collab.getBan());
+		collabModif.setBanque(collab.getBanque());
+		collabModif.setBic(collab.getBic());
+		collabModif.setCivilite(collab.getCivilite());
+		collabModif.setEmailPro(collab.getEmailPro());
+		collabModif.setIntitulePoste(collab.getIntitulePoste());
+		collabModif.setNom(collab.getNom());
+		collabModif.setNumSecuSocial(collab.getNumSecuSocial());
+		collabModif.setPhoto(collab.getPhoto());
+		collabModif.setPrenom(collab.getPrenom());
+		
+		return collabModif;
+	}
+	
 
 }
