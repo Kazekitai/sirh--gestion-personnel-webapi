@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-
 import dev.sgpwebapi.entity.Collaborateur;
 import dev.sgpwebapi.repository.CollaborateurRepository;
-import org.json.*;
 
 /**
 * API Collaborateurs
@@ -89,6 +85,16 @@ public class CollaborateursApiController {
 		collabModif.setNumSecuSocial(collab.getNumSecuSocial());
 		collabModif.setPhoto(collab.getPhoto());
 		collabModif.setPrenom(collab.getPrenom());
+		
+		return collabModif;
+	}
+	
+	@PutMapping("/{matricule}/banque")
+	public @ResponseBody Collaborateur modifierBanqueParMatricule(@PathVariable("matricule") String matricule, @RequestBody Collaborateur collab) {
+		Collaborateur collabModif = this.collabRepo.findByMatricule(matricule).get(0);
+		collabModif.setBan(collab.getBan());
+		collabModif.setBanque(collab.getBanque());
+		collabModif.setBic(collab.getBic());
 		
 		return collabModif;
 	}
