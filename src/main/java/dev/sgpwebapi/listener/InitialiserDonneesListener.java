@@ -5,6 +5,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import dev.sgpwebapi.service.InitialiserListeCollaborateursServiceDev;
 import dev.sgpwebapi.service.InitialiserListeDepartementsServiceDev;
 
 /**
@@ -21,14 +22,15 @@ public class InitialiserDonneesListener {
 	/**
 	 * Service d'initialisation des données dans la base
 	 */
-	@Autowired
-	private InitialiserListeDepartementsServiceDev initialiserDepartementsServiceDev;
-
+	@Autowired	private InitialiserListeDepartementsServiceDev initialiserDepartementsServiceDev;
+	@Autowired	private InitialiserListeCollaborateursServiceDev initialiserListeCollaborateursServiceDev;
+	
 	/* METHODES */
 
 	@EventListener(ContextRefreshedEvent.class)
 	public void contextRefreshedEvent() {
 		initialiserDepartementsServiceDev.initialiser();
+		initialiserListeCollaborateursServiceDev.initialiser();
 	}
 
 }
