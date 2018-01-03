@@ -40,11 +40,15 @@ public class InitialiserListeCollaborateursServiceDev  implements InitialiserDon
 				collab1.setMatricule("M" + collaborateurs.size());
 				collab1.setNumSecuSocial("123456789123456");
 				collab1.setPhoto("https://bootdey.com/img/Content/user_1.jpg");
+				collab1.setBanque("Caisse d'Epargne");
+				collab1.setBan("BAN1254536544");
+				collab1.setBic("BIC5233554412");
 				collaborateurs.add(collab1);
 
 				Collaborateur collab2 = new Collaborateur();
 				collab2.setNom("Bono");
 				collab2.setPrenom("Jean");
+				collab2.setCivilite("Mr");
 				collab2.setActif(false);
 				collab2.setAdresse("4 rue Edith Piaf, 44800 Saint-Herblain");
 				collab2.setDateNaissance(LocalDate.of(1985, 11, 25));
@@ -55,6 +59,9 @@ public class InitialiserListeCollaborateursServiceDev  implements InitialiserDon
 				collab2.setMatricule("M" + collaborateurs.size());
 				collab2.setNumSecuSocial("123456789123456");
 				collab2.setPhoto("https://bootdey.com/img/Content/user_1.jpg");
+				collab2.setBanque("Caisse d'Epargne");
+				collab2.setBan("BAN8545669845");
+				collab2.setBic("BIC8545669845");
 				collaborateurs.add(collab2);
 				
 				Collaborateur collab3 = new Collaborateur();
@@ -71,6 +78,9 @@ public class InitialiserListeCollaborateursServiceDev  implements InitialiserDon
 				collab3.setMatricule("M" + collaborateurs.size());
 				collab3.setNumSecuSocial("123456789123456");
 				collab3.setPhoto("https://bootdey.com/img/Content/user_2.jpg");
+				collab3.setBanque("La Banque Postale");
+				collab3.setBan("BAN62547899551");
+				collab3.setBic("BIC62547899551");
 				collaborateurs.add(collab3);
 				
 				Collaborateur collab4 = new Collaborateur();
@@ -87,6 +97,9 @@ public class InitialiserListeCollaborateursServiceDev  implements InitialiserDon
 				collab4.setMatricule("M" + collaborateurs.size());
 				collab4.setNumSecuSocial("123456789123456");
 				collab4.setPhoto("https://bootdey.com/img/Content/user_2.jpg");
+				collab4.setBanque("La Banque Postale");
+				collab4.setBan("BAN233356254");
+				collab4.setBic("BIC233356254");
 				collaborateurs.add(collab4);
 				
 				collabRepo.save(collab1);

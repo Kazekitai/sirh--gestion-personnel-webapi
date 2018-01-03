@@ -1,5 +1,7 @@
 package dev.sgpwebapi.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,5 +15,6 @@ import dev.sgpwebapi.entity.Collaborateur;
 @Repository
 @Transactional
 public interface CollaborateurRepository extends JpaRepository<Collaborateur, Integer> {
-
+	List<Collaborateur> findByDepartementId(int idDepartement);
+	List<Collaborateur> findByMatricule(String matricule);
 }
