@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import dev.sgpwebapi.entity.Collaborateur;
 import dev.sgpwebapi.repository.CollaborateurRepository;
+import org.json.*;
 
 /**
 * API Collaborateurs
@@ -31,6 +37,38 @@ public class CollaborateursApiController {
 	@GetMapping("/departement/{id}")
 	public List<Collaborateur> listercollaborateursParDepartement(@PathVariable("id") int id) {
 		return this.collabRepo.findByDepartementId(id);
+	}
+	
+	@GetMapping("/{matricule}")
+	public List<Collaborateur> listercollaborateursParMatricule(@PathVariable("matricule") String matricule) {
+		return this.collabRepo.findByMatricule(matricule);
+	}
+	
+	@GetMapping("/{matricule}/banque")
+	public String listercollaborateursBanqueParMatricule(@PathVariable("matricule") String matricule) {
+		List<Collaborateur> collabs = this.collabRepo.findBanqueByMatricule(matricule);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString ="";
+		String jsonStr ="";
+		String[] jsonStringSplit;
+		String[] jsonStringSplit1;
+		String[] jsonStringSplit2;
+	
+		try {
+			jsonString = mapper.writeValueAsString(collabs.get(0));
+			jsonStringSplit = jsonString.split("\",\"");
+			jsonStringSplit1 = jsonStringSplit[0].split("\"");
+			jsonStringSplit2 = jsonStringSplit[2].split("\"");
+			jsonStr = "[{\"Banque\": \"" + jsonStringSplit1[1]
+					+ "\", \"Bic\": \"" + jsonStringSplit[1]
+					+ "\", \"Ban\": \""+ jsonStringSplit2[0] +"\"}]";
+			System.out.println(jsonStr);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return jsonStr;
 	}
 
 }
