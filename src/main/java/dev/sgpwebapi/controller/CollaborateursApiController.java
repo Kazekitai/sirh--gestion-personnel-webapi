@@ -39,6 +39,11 @@ public class CollaborateursApiController {
 	public List<Collaborateur> listercollaborateursParDepartement(@PathVariable("id") int id) {
 		return this.collabRepo.findByDepartementId(id);
 	}
+	
+	@GetMapping("/nom/{nom}")
+	public List<Collaborateur> listercollaborateursParNom(@PathVariable("nom") String nom) {
+		return this.collabRepo.findByNom(nom);
+	}
 
 	@GetMapping("/{matricule}")
 	public List<Collaborateur> listercollaborateursParMatricule(@PathVariable("matricule") String matricule) {

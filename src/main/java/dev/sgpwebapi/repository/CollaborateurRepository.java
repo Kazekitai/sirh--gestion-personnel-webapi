@@ -19,7 +19,9 @@ import dev.sgpwebapi.entity.Collaborateur;
 public interface CollaborateurRepository extends JpaRepository<Collaborateur, Integer> {
 	List<Collaborateur> findByDepartementId(int idDepartement);
 	List<Collaborateur> findByMatricule(String matricule);
+	List<Collaborateur> findByNom(String nom);
 	
 	@Query("select c.banque, c.bic, c.ban from Collaborateur c where c.matricule = :matricule")
 	List<Collaborateur> findBanqueByMatricule(@Param("matricule") String matricule);
+
 }
